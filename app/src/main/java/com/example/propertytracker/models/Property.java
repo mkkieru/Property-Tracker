@@ -1,5 +1,8 @@
 package com.example.propertytracker.models;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Property {
     String title;
     String description;
