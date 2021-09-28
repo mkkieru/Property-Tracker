@@ -1,4 +1,4 @@
-package com.example.propertytracker.UI;
+package com.example.propertytracker.ui;
 
 import android.content.Intent;
 import android.os.Bundle;

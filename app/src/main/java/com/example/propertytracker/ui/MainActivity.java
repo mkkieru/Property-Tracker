@@ -1,4 +1,4 @@
-package com.example.propertytracker.UI;
+package com.example.propertytracker.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
