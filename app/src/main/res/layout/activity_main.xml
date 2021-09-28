@@ -20,7 +20,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/btnGoToAdd"
+        android:id="@+id/addNewProperty"
         android:text="Add Properties"
         android:padding="10dp"
         android:textAlignment="center"

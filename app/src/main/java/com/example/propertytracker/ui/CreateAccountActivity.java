@@ -20,7 +20,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -105,6 +108,15 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         hideProgressBar();
+
+                        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                        HashMap<String,Object> user = new HashMap<>();
+                        user.put("Email", mEmailEditText.getText().toString());
+                        user.put("Name", mNameEditText.getText().toString());
+                        user.put("UserLevel", "user");
+                        ref.child("users").child(userId).setValue(user);
+
 
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Authentication successful");

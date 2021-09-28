@@ -5,14 +5,14 @@ public class Property {
     String description;
     String imageUri;
     Boolean occupied;
-    Double price;
+    String price;
     int pushId;
 
     public Property() {
         // Default constructor
     }
 
-    public Property(String title, String description, Double price) {
+    public Property(String title, String description, String price) {
         this.title = title;
         this.description = description;
         this.price = price;
@@ -31,7 +31,7 @@ public class Property {
         return occupied;
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
@@ -55,7 +55,7 @@ public class Property {
         this.occupied = occupied;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
