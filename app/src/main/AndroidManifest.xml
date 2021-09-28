@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PropertyTracker">
         <activity
+            android:name=".ui.PropertyDetailActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.AddPropertyActivity"
             android:exported="true" />
         <activity
@@ -23,10 +26,10 @@
         </activity>
         <activity
             android:name=".ui.CreateAccountActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".ui.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
