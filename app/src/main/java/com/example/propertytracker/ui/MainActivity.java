@@ -14,6 +14,7 @@ import android.widget.Button;
 
 import com.example.propertytracker.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,19 +40,13 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if(user != null){
                     DocumentReference ref = FirebaseFirestore.getInstance().collection("users").document(user.getUid());
-                    ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    ref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            DocumentSnapshot document = task.getResult();
-                            Map<String, Object> data = document.getData();
-                            String userLevel = (String) data.get("UserLevel");
-
-                            if (userLevel =="admin"){
-                                Intent intent = new Intent(MainActivity.this, AddPropertyActivity.class);
-                                startActivity(intent);
-                                Log.d("message", userLevel);
-
-                            }
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            Log.d("TAG", "onSuccess" + documentSnapshot.getData());
+                            String userLevel = documentSnapshot.getString("UserLevel");
+                            Intent intent = new Intent(MainActivity.this, AddPropertyActivity.class);
+                            startActivity(intent);
                         }
                     });
                 }
