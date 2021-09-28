@@ -22,8 +22,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -109,18 +112,19 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
                         hideProgressBar();
 
-                        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                        HashMap<String,Object> user = new HashMap<>();
-                        user.put("Email", mEmailEditText.getText().toString());
-                        user.put("Name", mNameEditText.getText().toString());
-                        user.put("UserLevel", "user");
-                        ref.child("users").child(userId).setValue(user);
-
-
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Authentication successful");
                             createFirebaseUserProfile(Objects.requireNonNull(task.getResult().getUser()));
+
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            DocumentReference ref = FirebaseFirestore.getInstance().collection("users").document(user.getUid());
+                            // Define new user
+                            Map<String, Object> newUSer = new HashMap<>();
+                            newUSer.put("Name", mNameEditText.getText().toString());
+                            newUSer.put("Email", mEmailEditText.getText().toString());
+                            newUSer.put("UserLevel", "user");
+                            // Save new User
+                            ref.set(newUSer);
 
                         } else {
                             Toast.makeText(CreateAccountActivity.this, "Authentication failed.",
