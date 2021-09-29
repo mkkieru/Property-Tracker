@@ -9,7 +9,7 @@ public class Property {
     String imageUri;
     Boolean occupied;
     String price;
-    int pushId;
+    String pushId;
 
     public Property() {
         // Default constructor
@@ -38,7 +38,7 @@ public class Property {
         return price;
     }
 
-    public int getPushId() {
+    public String getPushId() {
         return pushId;
     }
 
@@ -66,7 +66,7 @@ public class Property {
         this.imageUri = imageUri;
     }
 
-    public void setPushId(int pushId) {
+    public void setPushId(String pushId) {
         this.pushId = pushId;
     }
 }
