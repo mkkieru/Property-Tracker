@@ -1,11 +1,13 @@
 package com.example.propertytracker.ui;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,16 +16,24 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.propertytracker.Constants;
 import com.example.propertytracker.R;
 import com.example.propertytracker.adapters.PropertyListAdapter;
 import com.example.propertytracker.models.Property;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,20 +43,12 @@ public class MainActivity extends AppCompatActivity {
     final String TAG = "tag";
     private Button addNewProperty;
 
+    private CollectionReference properties; // FirestoreDatabase properties collection;
+    private List<Property> mPropertyList = new ArrayList<>();
+
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
-
-
     PropertyListAdapter mAdapter;
-
-    Property property1 = new Property("Beach Side Villa","Mombasa","10000");
-    Property property2 = new Property("Pent House","Nairobi Upper Hill","10000");
-    Property property3 = new Property("Pent House","Kisumu","10000");
-    Property property4 = new Property("Waterfall view","Nyahururu","10000");
-    Property property5 = new Property("Beach Side Villa","Mombasa","10000");
-    Property property7 = new Property("Beach Side Villa","Mombasa","10000");
-
-    Property[] properties = {property1,property2,property3,property4,property5,property7};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mAdapter = new PropertyListAdapter(MainActivity.this, Arrays.asList(properties));
+        fetchPropertyList();
+
+        mAdapter = new PropertyListAdapter(MainActivity.this, mPropertyList);
         mRecyclerView.setAdapter(mAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -109,4 +114,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void fetchPropertyList() {
+        properties = FirebaseFirestore.getInstance().collection(Constants.COLLECTION_PROPERTIES);
+        properties.addSnapshotListener((value, error) -> {
+            if (error != null) {
+                Toast.makeText(getApplicationContext(), "Cannot Sync Data now.\nTry later",Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (value!= null) {
+                mPropertyList.clear();
+                for(DocumentSnapshot doc: value.getDocuments()) {
+                    mPropertyList.add(doc.toObject(Property.class));
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
 }

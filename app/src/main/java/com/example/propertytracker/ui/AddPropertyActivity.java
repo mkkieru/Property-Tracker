@@ -3,20 +3,23 @@ package com.example.propertytracker.ui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+<<<<<<< HEAD
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.EventLogTags;
+=======
+import android.os.Bundle;
+>>>>>>> 11fa4800d77e016eb735c10fa5a491d01bdb348b
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.propertytracker.R;
 import com.example.propertytracker.models.Property;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AddPropertyActivity extends AppCompatActivity {
@@ -42,19 +45,10 @@ public class AddPropertyActivity extends AppCompatActivity {
         mPropertyDescription = findViewById(R.id.propertyDescription);
         mPropertyPrice = findViewById(R.id.propertyPrice);
 
-
-        db = FirebaseFirestore.getInstance();
-        ref = db.getInstance().collection("properties");
-
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Property property = new Property(
-                        mPropertyName.getText().toString(),
-                        mPropertyDescription.getText().toString(),
-                        mPropertyPrice.getText().toString());
-                ref.add(property);
-
+                saveProperty();
             }
         });
 
@@ -64,11 +58,35 @@ public class AddPropertyActivity extends AppCompatActivity {
 
             }
         });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11fa4800d77e016eb735c10fa5a491d01bdb348b
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    public void saveProperty() {
+        db = FirebaseFirestore.getInstance();
+        ref = db.getInstance().collection("properties");
+        String newDocumentId = ref.document().getId();
+        Property newProperty = new Property(
+                mPropertyName.getText().toString(),
+                mPropertyDescription.getText().toString(),
+                mPropertyPrice.getText().toString());
+        newProperty.setId(newDocumentId);
+        ref.document(newDocumentId).set(newProperty).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(AddPropertyActivity.this, "Property Saved",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(AddPropertyActivity.this,MainActivity.class));
+                finish();
+
+            }
+        });
+
     }
 }
