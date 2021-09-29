@@ -20,7 +20,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/addNewProperty"
+        android:id="@+id/new_property_btn"
         android:text="Add Properties"
         android:padding="10dp"
         android:textAlignment="center"
@@ -28,13 +28,10 @@
         android:textColor="#ffff"
         android:gravity="center_horizontal" />
 
-    <ListView
-        android:id="@+id/listViewProperties2"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-    </ListView>
+        android:layout_height="match_parent" />
 
 
 </LinearLayout>
