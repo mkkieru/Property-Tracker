@@ -12,6 +12,9 @@ import com.example.propertytracker.R;
 import com.example.propertytracker.models.Property;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AddPropertyActivity extends AppCompatActivity {
     private Button mSubmit;
@@ -20,8 +23,8 @@ public class AddPropertyActivity extends AppCompatActivity {
     private EditText mPropertyDescription;
     private EditText mPropertyPrice;
 
-    private FirebaseDatabase db;
-    private DatabaseReference ref;
+    private FirebaseFirestore db;
+    private CollectionReference ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +38,8 @@ public class AddPropertyActivity extends AppCompatActivity {
         mPropertyPrice = findViewById(R.id.propertyPrice);
 
 
-        db = FirebaseDatabase.getInstance();
-        ref = db.getReference();
+        db = FirebaseFirestore.getInstance();
+        ref = db.getInstance().collection("properties");
 
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +48,7 @@ public class AddPropertyActivity extends AppCompatActivity {
                         mPropertyName.getText().toString(),
                         mPropertyDescription.getText().toString(),
                         mPropertyPrice.getText().toString());
-                ref.child("properties").push().setValue(property);
+                ref.add(property);
 
             }
         });
