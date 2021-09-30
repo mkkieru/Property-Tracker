@@ -20,6 +20,7 @@
     <color name="colorAccent">#F7B162</color>
     <color name="themeColor">#F7B162</color>
     <color name="dividerColor">#BDBDBD</color>
+    <color name="lightPrimaryColor">#CFD8DC</color>
 
     <!--normal colors-->
     <color name="darkTextColor">#020000</color>
