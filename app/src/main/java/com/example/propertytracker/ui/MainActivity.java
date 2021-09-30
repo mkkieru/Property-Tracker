@@ -25,6 +25,7 @@ import com.example.propertytracker.models.Property;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -75,10 +76,27 @@ public class MainActivity extends AppCompatActivity {
         addNewProperty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                adminAddProperty(userId);
+                startActivity(new Intent(getApplicationContext(),AddPropertyActivity.class));
             }
         });
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = user.getUid();
+        DocumentReference df = FirebaseFirestore.getInstance().collection("users").document(userId);
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String userLevel = documentSnapshot.getString("UserLevel");
+                if ( userLevel.equals("admin")) {
+                    addNewProperty.setVisibility(View.VISIBLE);
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please Contact Admin to be able to add property",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
     }
 
     @Override
