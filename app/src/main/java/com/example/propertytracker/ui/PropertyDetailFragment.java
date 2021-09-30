@@ -25,52 +25,38 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PropertyDetailFragment extends Fragment {
-//    @BindView(R.id.propertyImageView) ImageView mImageLabel;
-//    @BindView(R.id.propertyNameTextView) TextView mNameLabel;
-//    @BindView(R.id.descriptionTextView) TextView mDescription;
-//    @BindView(R.id.propertyPriceView) TextView mPrice;
-//
-//
-////    @BindView(R.id.phoneTextView) TextView mPhoneLabel;
-////    @BindView(R.id.addressTextView) TextView mAddressLabel;
-//
-//
-//
-//    private Property mProperty;
-//
-//    public PropertyDetailFragment() {
-//        // Required empty public constructor
-//    }
-//
-//
-//    public static PropertyDetailFragment newInstance(Property Property) {
-//        PropertyDetailFragment propertyDetailFragment= new PropertyDetailFragment();
-//        Bundle args = new Bundle();
-//        args.putParcelable("property", Parcels.wrap(Property));
-//        PropertyDetailFragment.setArguments(args);
-//        return propertyDetailFragment;
-//    }
-//
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        assert getArguments() != null;
-//        mProperty = Parcels.unwrap(getArguments().getParcelable("property"));
-//    }
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//
-//        // Inflate the layout for this fragment
-//
-//        View view =  inflater.inflate(R.layout.fragment_property_detail, container, false);
-//        ButterKnife.bind(this, view);
-//
-//
-//        mNameLabel.setText( mProperty.getTitle());
-//        mDescription.setText(mDescription.getDescription());
-//        mPrice.setText(mPrice.getPrice().toString());
-//
-//        return view;
-//    }
+    @BindView(R.id.propertyimage) ImageView mPropertyView;
+    @BindView(R.id.propertyLocation) TextView mPropertyLocationView;
+    @BindView(R.id.propertyTitle) TextView mPropertyTitleView;
+
+    private Property mProperty;
+
+    public  PropertyDetailFragment() {
+
+    }
+    public  static  PropertyDetailFragment newInstance(Property property){
+        PropertyDetailFragment propertyDetailFragment = new PropertyDetailFragment();
+        Bundle args = new Bundle();
+        args.putParcelable("property", Parcels.wrap(property));
+        propertyDetailFragment.setArguments(args);
+        return  propertyDetailFragment;
+    }
+
+    @Override
+    public  void onCreate(@Nullable Bundle saveInstanceState){
+        super.onCreate(saveInstanceState);
+        assert  getArguments() != null;
+        mProperty = Parcels.unwrap(getArguments().getParcelable("property"));
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState){
+        View view = inflater.inflate(R.layout.fragment_property_detail, container,false);
+        ButterKnife.bind(this, view);
+        mPropertyLocationView.setText(mProperty.getDescription());
+        mPropertyTitleView.setText(mProperty.getTitle());
+        Picasso.get().load(mProperty.getImageUri()).into(mPropertyView);
+        return  view;
+    }
 }
