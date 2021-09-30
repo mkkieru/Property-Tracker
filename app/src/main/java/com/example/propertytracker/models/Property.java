@@ -6,7 +6,7 @@ import org.parceler.Parcel;
 public class Property {
     String title;
     String description;
-    String imageUri;
+    String imageUrl;
     Boolean occupied;
     String price;
     String id;
@@ -15,13 +15,13 @@ public class Property {
         // Default constructor
     }
 
-    public Property(String title, String description, String price, String imageUri) {
+    public Property(String title, String description, String price, String imageUrl) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.occupied = false;
         this.id = "";
-        this.imageUri = imageUri;
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {
@@ -45,11 +45,11 @@ public class Property {
     }
 
     public String getImageUri() {
-        return imageUri;
+        return imageUrl;
     }
 
     public Property(String imageUri) {
-        this.imageUri = imageUri;
+        this.imageUrl = imageUri;
     }
 
     public void setTitle(String title) {
@@ -68,12 +68,8 @@ public class Property {
         this.price = price;
     }
 
-    public String getImageUri() {
-        return imageUri;
-    }
-
     public void setImageUri(String imageUri) {
-        this.imageUri = imageUri;
+        this.imageUrl = imageUri;
     }
 
     public void setId(String id) {
