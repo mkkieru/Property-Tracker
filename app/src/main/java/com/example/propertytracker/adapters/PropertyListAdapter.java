@@ -1,6 +1,7 @@
 package com.example.propertytracker.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.propertytracker.R;
 import com.example.propertytracker.adapters.PropertyViewHolder;
 import com.example.propertytracker.models.Property;
+import com.example.propertytracker.ui.PropertyDetailActivity;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -49,7 +53,7 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
     public int getItemCount() {
         return mProperties.size();
     }
-    public  class PropertyViewHolder extends RecyclerView.ViewHolder{
+    public  class PropertyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.propertyimage) ImageView mPropertyView;
         @BindView(R.id.propertyLocation) TextView mPropertyLocationView;
@@ -59,11 +63,21 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
             super(itemView);
             ButterKnife.bind(this,itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(this);
         }
 
         public void bindProperty(Property property){
             mPropertyLocationView.setText(property.getDescription());
             mPropertyTitleView.setText(property.getTitle());
+        }
+
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
+            Intent intent = new Intent(mContext, PropertyDetailActivity.class);
+            intent.putExtra("position", itemPosition);
+            intent.putExtra("properties", Parcels.wrap(mProperties));
+            mContext.startActivity(intent);
         }
     }
 }
