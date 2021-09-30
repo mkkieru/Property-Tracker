@@ -117,23 +117,6 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-
-//    private void adminAddProperty(String uid) {
-//        DocumentReference df = FirebaseFirestore.getInstance().collection("users").document(uid);
-//        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                String userLevel = documentSnapshot.getString("UserLevel");
-//                if ( userLevel.equals("admin")) {
-//                    startActivity(new Intent(getApplicationContext(),AddPropertyActivity.class));
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "Please Contact Admin to be able to add property",Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
-//    }
-
-
     private void fetchPropertyList() {
         properties = FirebaseFirestore.getInstance().collection(Constants.COLLECTION_PROPERTIES);
         properties.addSnapshotListener((value, error) -> {

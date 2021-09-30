@@ -5,6 +5,11 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable/ic_baseline_cloud_upload_24.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.184375" />
+        <entry key="app/src/main/res/drawable/ic_img.xml" value="0.184375" />
+        <entry key="app/src/main/res/drawable/ic_login_avatar.xml" value="0.184375" />
+        <entry key="app/src/main/res/drawable/ic_side.xml" value="0.184375" />
+        <entry key="app/src/main/res/drawable/login_bg.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/activity_add_property.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_create_account.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.19322916666666667" />
@@ -12,13 +17,12 @@
         <entry key="app/src/main/res/layout/activity_property_detail.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_property_location.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/activity_saved_property_list.xml" value="0.19322916666666667" />
-        <entry key="app/src/main/res/layout/fragment_property_detail.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_property_detail.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_property_list.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/layout/fragment_saved_property_list.xml" value="0.19322916666666667" />
-        <entry key="app/src/main/res/layout/property_list_item.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/property_list_item.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/menu_photo.xml" value="0.1" />
-        <entry key="app/src/main/res/xml/file_paths.xml" value="0.1" />
       </map>
     </option>
   </component>
