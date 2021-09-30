@@ -15,12 +15,13 @@ public class Property {
         // Default constructor
     }
 
-    public Property(String title, String description, String price) {
+    public Property(String title, String description, String price, String imageUri) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.occupied = false;
         this.id = "";
+        this.imageUri = imageUri;
     }
 
     public String getTitle() {
@@ -41,6 +42,10 @@ public class Property {
 
     public String getId() {
         return id;
+    }
+
+    public String getImageUri() {
+        return imageUri;
     }
 
     public Property(String imageUri) {

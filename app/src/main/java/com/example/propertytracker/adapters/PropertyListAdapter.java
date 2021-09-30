@@ -69,6 +69,7 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
         public void bindProperty(Property property){
             mPropertyLocationView.setText(property.getDescription());
             mPropertyTitleView.setText(property.getTitle());
+            //mPropertyTitleView.setText(property.getImageUri());
         }
 
         @Override
