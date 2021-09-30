@@ -2,6 +2,7 @@ package com.example.propertytracker.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,12 @@ import com.example.propertytracker.R;
 import com.example.propertytracker.adapters.PropertyViewHolder;
 import com.example.propertytracker.models.Property;
 import com.example.propertytracker.ui.PropertyDetailActivity;
+import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import butterknife.BindView;
@@ -53,6 +57,7 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
     public int getItemCount() {
         return mProperties.size();
     }
+
     public  class PropertyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         @BindView(R.id.propertyimage) ImageView mPropertyView;
@@ -69,7 +74,8 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
         public void bindProperty(Property property){
             mPropertyLocationView.setText(property.getDescription());
             mPropertyTitleView.setText(property.getTitle());
-            //mPropertyTitleView.setText(property.getImageUri());
+            // Add image
+            Picasso.get().load(property.getImageUri()).into(mPropertyView);
         }
 
         @Override
@@ -80,5 +86,6 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
             intent.putExtra("properties", Parcels.wrap(mProperties));
             mContext.startActivity(intent);
         }
+
     }
 }
