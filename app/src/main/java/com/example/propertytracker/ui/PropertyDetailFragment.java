@@ -56,6 +56,7 @@ public class PropertyDetailFragment extends Fragment {
         ButterKnife.bind(this, view);
         mPropertyLocationView.setText(mProperty.getDescription());
         mPropertyTitleView.setText(mProperty.getTitle());
+        Picasso.get().load(mProperty.getImageUri()).into(mPropertyView);
         return  view;
     }
 }

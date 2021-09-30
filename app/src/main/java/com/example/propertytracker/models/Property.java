@@ -63,6 +63,10 @@ public class Property {
         this.price = price;
     }
 
+    public String getImageUri() {
+        return imageUri;
+    }
+
     public void setImageUri(String imageUri) {
         this.imageUri = imageUri;
     }
