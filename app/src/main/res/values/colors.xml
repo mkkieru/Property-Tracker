@@ -21,6 +21,10 @@
     <color name="themeColor">#F7B162</color>
     <color name="dividerColor">#BDBDBD</color>
     <color name="lightPrimaryColor">#CFD8DC</color>
+    <color name="whiteSmoke">#F5F5F5</color>
+    <color name="FragmentBody">#CDDC39</color>
+    <color name="secondaryColor">#757575</color>
+
 
     <!--normal colors-->
     <color name="darkTextColor">#020000</color>
