@@ -28,6 +28,8 @@ public class PropertyDetailFragment extends Fragment {
     @BindView(R.id.propertyimage) ImageView mPropertyView;
     @BindView(R.id.propertyLocation) TextView mPropertyLocationView;
     @BindView(R.id.propertyTitle) TextView mPropertyTitleView;
+    @BindView(R.id.propertyStatus) TextView mPropertyStatus;
+    @BindView(R.id.propertyPrice) TextView mPropertyPrice;
 
     private Property mProperty;
 
@@ -56,6 +58,15 @@ public class PropertyDetailFragment extends Fragment {
         ButterKnife.bind(this, view);
         mPropertyLocationView.setText(mProperty.getDescription());
         mPropertyTitleView.setText(mProperty.getTitle());
+
+        if (mProperty.getOccupied()){
+            mPropertyStatus.setText("Occupied");
+        }
+        if (!(mProperty.getOccupied())){
+            mPropertyStatus.setText("Vacant");
+        }
+
+        mPropertyPrice.setText(mProperty.getPrice());
         Picasso.get().load(mProperty.getImageUri()).into(mPropertyView);
         return  view;
     }
