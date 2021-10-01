@@ -2,49 +2,56 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp">
 
 
     <ImageView
         android:id="@+id/propertyimage"
-        style="@style/Base.CardView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/mombasa" />
+        app:srcCompat="@drawable/mombasa"
+        android:scaleType="centerCrop"/>
 
-    <TextView
-        android:id="@+id/propertyLocation"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Property location"
-        android:textColor="@color/black"
-        android:textSize="34sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="@+id/propertyimage"
-        app:layout_constraintEnd_toEndOf="@+id/propertyimage"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="@+id/propertyimage"
-        app:layout_constraintTop_toTopOf="@+id/propertyimage"
-        app:layout_constraintVertical_bias="0.727" />
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/propertyimage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.491">
 
-    <TextView
-        android:id="@+id/propertyTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Property title"
-        android:textColor="@color/black"
-        android:textSize="34sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="@+id/propertyimage"
-        app:layout_constraintEnd_toEndOf="@+id/propertyimage"
-        app:layout_constraintStart_toStartOf="@+id/propertyimage"
-        app:layout_constraintTop_toTopOf="@+id/propertyimage"
-        app:layout_constraintVertical_bias="0.349" />
+        <TextView
+            android:id="@+id/propertyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Property title"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold|italic" />
 
+
+
+        <TextView
+            android:id="@+id/propertyLocation"
+            android:layout_width="178dp"
+            android:layout_height="wrap_content"
+            android:text="Recipe Name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
