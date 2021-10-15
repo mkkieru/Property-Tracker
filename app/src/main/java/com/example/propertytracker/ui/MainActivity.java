@@ -51,8 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private CollectionReference properties; // FirestoreDatabase properties collection;
     private List<Property> mPropertyList = new ArrayList<>();
     private ItemTouchHelper mSwipeDeleteSensor;
-    @BindView(R.id.recyclerView)
-    RecyclerView mRecyclerView;
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     private Button addNewProperty;
     PropertyListAdapter mAdapter;
 

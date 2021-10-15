@@ -67,7 +67,7 @@ public class AddPropertyActivity extends AppCompatActivity {
 
 
     private static final int REQUEST_IMAGE_CAPTURE = 111;
-    private static final int CAMERA_PERMISSION_REQUEST_CODE = 11;;
+    private static final int CAMERA_PERMISSION_REQUEST_CODE = 11;
     private String currentPhotoPath;
 
     @BindView(R.id.propertyImageView) ImageView mImageLabel;

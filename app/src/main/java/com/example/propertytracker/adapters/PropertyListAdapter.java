@@ -32,13 +32,10 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
     private List<Property> mProperties;
     private Context mContext;
 
-
     public PropertyListAdapter(Context Context , List<Property> mProperties){
         this.mProperties = mProperties;
         this.mContext = Context;
     }
-
-
 
     @NonNull
     @Override
